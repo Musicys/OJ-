@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yupi.yuoj.mapper.QuestionMapper">
+
+    <resultMap id="BaseResultMap" type="com.yupi.yuoj.model.entity.Question">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="tags" column="tags" jdbcType="VARCHAR"/>
+        <result property="answer" column="answer" jdbcType="VARCHAR"/>
+        <result property="submitNum" column="submitNum" jdbcType="INTEGER"/>
+        <result property="acceptedNum" column="acceptedNum" jdbcType="INTEGER"/>
+        <result property="judgeCase" column="judgeCase" jdbcType="VARCHAR"/>
+        <result property="judgeConfig" column="judgeConfig" jdbcType="VARCHAR"/>
+        <result property="thumbNum" column="thumbNum" jdbcType="INTEGER"/>
+        <result property="favourNum" column="favourNum" jdbcType="INTEGER"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,title,content,
+        tags,answer,submitNum,
+        acceptedNum,judgeCase,judgeConfig,
+        thumbNum,favourNum,userId,
+        createTime,updateTime,isDelete
+    </sql>
+
+    <!-- 自增操作 -->
+    <update id="incrementSubmitNum" parameterType="map">
+        UPDATE question
+        SET submitNum = submitNum + 1
+        WHERE id = #{id}
+    </update>
+
+    <update id="incrementAcceptedNum" parameterType="map">
+        UPDATE question
+        SET acceptedNum = acceptedNum + 1
+        WHERE id = #{id}
+    </update>
+
+    <update id="incrementThumbNum" parameterType="map">
+        UPDATE question
+        SET thumbNum = thumbNum + 1
+        WHERE id = #{id}
+    </update>
+
+    <update id="incrementFavourNum" parameterType="map">
+        UPDATE question
+        SET favourNum = favourNum + 1
+        WHERE id = #{id}
+    </update>
+
+    <!-- 自减操作 -->
+    <update id="decrementSubmitNum" parameterType="map">
+        UPDATE question
+        SET submitNum = GREATEST(submitNum - 1, 0)
+        WHERE id = #{id}
+          AND submitNum > 0
+    </update>
+
+    <update id="decrementAcceptedNum" parameterType="map">
+        UPDATE question
+        SET acceptedNum = GREATEST(acceptedNum - 1, 0)
+        WHERE id = #{id}
+          AND acceptedNum > 0
+    </update>
+
+    <update id="decrementThumbNum" parameterType="map">
+        UPDATE question
+        SET thumbNum = GREATEST(thumbNum - 1, 0)
+        WHERE id = #{id}
+          AND thumbNum > 0
+    </update>
+
+    <update id="decrementFavourNum" parameterType="map">
+        UPDATE question
+        SET favourNum = GREATEST(favourNum - 1, 0)
+        WHERE id = #{id}
+          AND favourNum > 0
+    </update>
+</mapper>

@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+root {}
+
+
+.action,
+.arco-comment,
+.arco-comment-content {
+    /* background: white; */
+    /* color: white !important; */
+
+    color-scheme: dark;
+}
+
+.arco-tabs {
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.arco-tabs-content {
+    flex: 1;
+}
+
+.arco-tabs-pane,
+.arco-tabs-content-list {
+    height: 100%;
+}
+
+#code-editor {}
+
+tr:nth-child(2n) {
+    background-color: #2A2A2A;
+}
+
+table {
+    border: none;
+}

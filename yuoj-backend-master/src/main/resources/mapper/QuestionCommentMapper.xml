@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yupi.yuoj.mapper.QuestionCommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.yupi.yuoj.model.entity.QuestionComment">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="questionid" column="questionId" jdbcType="BIGINT"/>
+            <result property="userid" column="userId" jdbcType="BIGINT"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="pid" column="pid" jdbcType="BIGINT"/>
+            <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updatetime" column="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,questionId,userId,
+        content,pid,createTime,
+        updateTime
+    </sql>
+    <!-- 根据用户ID和评论ID更新requested字段 -->
+    <update id="updateRequested">
+        UPDATE question_comment
+        SET requested = true
+        WHERE commentid = #{userId} AND id = #{commentId}
+    </update>
+</mapper>
